@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>AgriChem · Pesticide Registry</title>
+<link rel="manifest" href='data:application/manifest+json,{"name":"AgriChem Registry","short_name":"AgriChem","display":"standalone","background_color":"#ffffff","theme_color":"#ffffff","start_url":"./","icons":[{"src":"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%2316a34a%22/><path d=%22M256 96 C 360 96 416 168 416 264 C 416 376 336 432 256 432 C 200 432 160 392 160 344 C 160 296 200 264 256 264 C 296 264 320 288 320 320%22 fill=%22none%22 stroke=%22%23ffffff%22 stroke-width=%2228%22/><path d=%22M256 152 V 372%22 stroke=%22%23ffffff%22 stroke-width=%2222%22/></svg>","sizes":"any","type":"image/svg+xml"}]}' />
+<style>
+:root{--bg:#f8fafc;--panel:#fff;--bg2:#f1f5f9;--ink:#0f172a;--ink-dim:#64748b;--line:#e2e8f0;--accent:#16a34a;--accent-light:#dcfce7;--accent2:#15803d;--red:#dc2626;--red-light:#fee2e2;--amber:#d97706;--amber-light:#fef3c7;--blue:#2563eb;--blue-light:#dbeafe;--purple:#9333ea;--purple-light:#f3e8ff;--radius:16px;--shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -1px rgba(0,0,0,.03)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px 16px;border-bottom:1px solid var(--line);padding-top:max(12px,env(safe-area-inset-top));box-shadow:var(--shadow)}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.brand svg{width:30px;height:30px;border-radius:8px}
+.brand h1{font-size:17px;margin:0;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.brand .sub{font-size:11px;color:var(--ink-dim);font-weight:600}
+.search{position:relative;margin-bottom:10px}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:12px 12px 12px 40px;border-radius:12px;font-size:14px;font-weight:500}
+.search input:focus{outline:none;border-color:var(--accent);background:#fff}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);opacity:.5}
+.finder{display:flex;gap:8px;margin-bottom:10px}
+.finder select{flex:1;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:10px;border-radius:10px;font-size:13px;font-weight:600;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2364748b'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.4a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+.finder-btn{background:var(--accent);color:#fff;border:none;padding:0 16px;border-radius:10px;font-weight:700;cursor:pointer;font-size:13px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:6px 12px;border-radius:999px;font-size:12px;background:var(--bg2);color:var(--ink-dim);border:1px solid transparent;cursor:pointer;font-weight:600}
+.chip.on{background:var(--accent-light);color:var(--accent2);border-color:var(--accent)}
+.view{display:none;padding:16px}.view.active{display:block}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.stat-card{background:var(--panel);padding:16px;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow)}
+.stat-card .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.stat-card .val{font-size:22px;font-weight:800;color:var(--ink);margin-bottom:2px}
+.stat-card .label{font-size:12px;color:var(--ink-dim);font-weight:600}
+.chart-card{background:var(--panel);padding:16px;border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);margin-bottom:16px}
+.chart-title{font-size:14px;font-weight:800;color:var(--ink);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.bar-chart{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:flex;align-items:center;gap:8px}
+.bar-label{flex:1;font-size:12px;font-weight:700;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-track{flex:0 0 100px;height:10px;background:var(--bg2);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px}
+.bar-val{flex:0 0 35px;font-size:12px;font-weight:700;text-align:right}
+.donut-container{display:flex;align-items:center;justify-content:center;gap:20px}
+.donut-svg{transform:rotate(-90deg)}
+.donut-legend{display:flex;flex-direction:column;gap:8px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.count{padding:0 0 12px;font-size:11px;color:var(--ink-dim);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.moa-group-header{position:sticky;top:160px;z-index:10;background:var(--bg);padding:8px 4px;margin-top:12px;font-size:12px;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--accent-light);display:flex;justify-content:space-between;align-items:center}
+.moa-group-header span{font-size:10px;color:var(--ink-dim);font-weight:600;background:#fff;padding:2px 6px;border-radius:4px;border:1px solid var(--line)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-bottom:10px;cursor:pointer;transition:transform .1s,box-shadow .1s}
+.card:active{transform:scale(.99);box-shadow:var(--shadow-hover)}
+.card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card .trade{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:2px}
+.card .common{font-size:12px;color:var(--ink-dim);font-style:italic}
+.card .price-tier{font-size:10px;font-weight:700;padding:4px 8px;border-radius:6px;text-align:center}
+.tier-red{background:var(--red-light);color:var(--red)}
+.tier-amber{background:var(--amber-light);color:var(--amber)}
+.tier-green{background:var(--accent-light);color:var(--accent2)}
+.tier-slate{background:var(--bg2);color:var(--ink-dim)}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.badge{font-size:10px;padding:3px 7px;border-radius:6px;font-weight:700;border:1px solid var(--line)}
+.b-cat{background:#fff;color:var(--blue);border-color:var(--blue-light)}
+.b-moa{background:#fff;color:var(--accent2);border-color:var(--accent-light)}
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.meta-item{background:var(--bg2);padding:8px 10px;border-radius:8px}
+.meta-item .k{font-size:10px;color:var(--ink-dim);text-transform:uppercase;margin-bottom:2px;font-weight:700}
+.meta-item .v{color:var(--ink);font-weight:600;font-size:12px;word-break:break-word}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:none;opacity:0;transition:opacity .2s}
+.modal.show{display:block;opacity:1}
+.modal .sheet{background:#fff;border-radius:20px 20px 0 0;max-width:600px;margin:0 auto;margin-top:auto;max-height:92vh;overflow-y:auto;animation:slideUp .25s ease-out}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.sheet-head{padding:24px 20px 12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:1}
+.sheet-head h2{margin:0 0 4px;font-size:20px;font-weight:700}
+.sheet-head .sub{font-size:13px;color:var(--ink-dim);font-style:italic}
+.sheet-close{position:absolute;top:16px;right:16px;background:var(--bg2);border:none;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--ink-dim)}
+.sheet-body{padding:16px 20px 40px}
+.detail-section{margin-bottom:20px;border-bottom:1px solid var(--line);padding-bottom:16px}
+.detail-section:last-child{border-bottom:none}
+.section-title{font-size:12px;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.detail-row{display:flex;justify-content:space-between;padding:8px 0;font-size:13px;gap:10px}
+.detail-row .k{color:var(--ink-dim);font-weight:600;flex:0 0 40%}
+.detail-row .v{color:var(--ink);font-weight:500;text-align:right;flex:1;word-break:break-word}
+.tag-container{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.tag{display:inline-block;background:var(--bg2);padding:4px 8px;border-radius:6px;font-size:11px;font-weight:600}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:30}
+.nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:700;color:var(--ink-dim);cursor:pointer;padding:4px 12px;border-radius:8px}
+.nav-btn.on{color:var(--accent2);background:var(--accent-light)}
+.nav-btn svg{width:22px;height:22px}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#16a34a"/><path d="M256 96 C 360 96 416 168 416 264 C 416 376 336 432 256 432 C 200 432 160 392 160 344 C 160 296 200 264 256 264 C 296 264 320 288 320 320" fill="none" stroke="#fff" stroke-width="28"/><path d="M256 152 V 372" stroke="#fff" stroke-width="22"/></svg>
+    <div><h1>AgriChem Registry</h1><div class="sub">DAE Field Guide</div></div>
+  </div>
+</header>
+<div class="view active" id="view-dashboard">
+  <div class="stat-grid">
+    <div class="stat-card"><div class="icon" style="background:var(--blue-light);color:var(--blue)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div><div class="val" id="stat-products">0</div><div class="label">Products</div></div>
+    <div class="stat-card"><div class="icon" style="background:var(--accent-light);color:var(--accent2)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="val" id="stat-moa">0</div><div class="label">MoA Groups</div></div>
+  </div>
+</div>
+<div class="view" id="view-database">
+  <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input id="q-db" type="search" placeholder="Search..." autocomplete="off"></div>
+  <div class="count" id="count-db">0 products</div>
+  <div id="list-db" style="padding:0 12px 80px"></div>
+</div>
+<nav class="bottom-nav">
+  <button class="nav-btn on" onclick="switchView('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Dashboard</button>
+  <button class="nav-btn" onclick="switchView('database')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg>Database</button>
+</nav>
+<script src="registry.js"></script>
+<script>
+const R=window.REGISTRY;const idx={};R.cols.forEach((c,i)=>idx[c]=i);
+const rows=R.rows.map(r=>({reg:r[idx.reg],cat:r[idx.cat],common:r[idx.common],trade:r[idx.trade],moa:r[idx.moa],auth:r[idx.auth],tier:r[idx.tier],crops:(r[idx.crops]||[]).map(i=>R.crops[i]??i),pests:(r[idx.pests]||[]).map(i=>R.pests[i]??i)}));
+document.getElementById('stat-products').textContent=rows.length;
+document.getElementById('stat-moa').textContent=new Set(rows.map(r=>r.moa).filter(Boolean)).size;
+let filtered=rows;
+function renderList(){document.getElementById('count-db').textContent=filtered.length+' products';document.getElementById('list-db').innerHTML=filtered.map(p=>`<div class="card"><div class="head"><div><div class="trade">${p.trade}</div><div class="common">${p.common}</div></div><div class="price-tier tier-slate">${p.tier||'N/A'}</div></div><div class="badges"><span class="badge b-cat">${p.cat}</span>${p.moa?`<span class="badge b-moa">${p.moa}</span>`:''}</div></div>`).join('')}
+document.getElementById('q-db').addEventListener('input',e=>{const q=e.target.value.toLowerCase();filtered=rows.filter(p=>[p.trade,p.common,p.cat,p.moa].join(' ').toLowerCase().includes(q));renderList()});
+function switchView(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('on'));document.getElementById('view-'+v).classList.add('active');document.querySelector(`.nav-btn[onclick="switchView('${v}')"]`).classList.add('on')}
+renderList();
+</script>
+</body>
+</html>
