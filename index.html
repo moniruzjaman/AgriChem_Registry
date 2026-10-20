@@ -8,7 +8,7 @@
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="AgriChem"/>
-<meta name="description" content="Bangladesh DAE Pesticide Registry: 6,137 products, 101 MoA groups, resistance management, PHI/REI, HHP risk tiers, regulatory compliance. Field guide + filterable explorer."/>
+<meta name="description" content="Bangladesh DAE Pesticide Registry: 6,137 products, 101 MoA groups, 100% MoA coverage (IRAC/FRAC/HRAC/BIO), resistance management, PHI/REI, HHP risk tiers, regulatory compliance. Field guide + filterable explorer with offline PWA support."/>
 <title>AgriChem · Bangladesh DAE Pesticide Registry</title>
 
 <link rel="icon" type="image/svg+xml" href="icon.svg"/>
@@ -17,7 +17,7 @@
 <link rel="manifest" href="manifest.webmanifest"/>
 
 <meta property="og:title" content="AgriChem · Bangladesh DAE Pesticide Registry"/>
-<meta property="og:description" content="6,137 registered products, 101 MoA groups, resistance management, PHI/REI, HHP risk tiers. Filterable explorer + field guide."/>
+<meta property="og:description" content="6,137 registered products, 101 MoA groups, 100% MoA coverage (IRAC/FRAC/HRAC/BIO), resistance management, PHI/REI, HHP risk tiers. Filterable explorer + field guide with offline PWA support."/>
 <meta property="og:image" content="https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg"/>
 <meta property="og:image:type" content="image/svg+xml"/>
 <meta property="og:image:width" content="1200"/>
@@ -28,7 +28,7 @@
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="AgriChem · Bangladesh DAE Pesticide Registry"/>
-<meta name="twitter:description" content="6,137 products, 101 MoA groups, resistance management, PHI/REI, HHP risk tiers."/>
+<meta name="twitter:description" content="6,137 products, 101 MoA groups, 100% MoA coverage, resistance management, PHI/REI, HHP risk tiers."/>
 <meta name="twitter:image" content="https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg"/>
 
 <script type="application/ld+json">
@@ -37,7 +37,7 @@
   "@type": "WebApplication",
   "name": "AgriChem Registry",
   "url": "https://moniruzjaman.github.io/AgriChem_Registry/",
-  "description": "Bangladesh DAE Pesticide Registry: 6,137 products, 101 MoA groups, resistance management, PHI/REI, HHP risk tiers.",
+  "description": "Bangladesh DAE Pesticide Registry: 6,137 products, 101 MoA groups, 100% MoA coverage (IRAC/FRAC/HRAC/BIO), resistance management, PHI/REI, HHP risk tiers.",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -429,7 +429,7 @@ footer strong{color:var(--ink-2)}
   <div class="header-container">
     <div class="brand">
       <svg viewBox="0 0 512 512"><rect width="512" height="512" rx="96" fill="#0f3d2e"/><path d="M256 96 C 360 96 416 168 416 264 C 416 376 336 432 256 432 C 200 432 160 392 160 344 C 160 296 200 264 256 264 C 296 264 320 288 320 320" fill="none" stroke="#7dd3a0" stroke-width="28"/><path d="M256 152 V 372" stroke="#e8f5ec" stroke-width="22"/></svg>
-      <div><h1>AgriChem Registry</h1><div class="sub">DAE Bangladesh &middot; PTAC 2026 Rev 4.1</div></div>
+      <div><h1>AgriChem Registry</h1><div class="sub">DAE Bangladesh &middot; PTAC 2026 &middot; 100% MoA Coverage</div></div>
     </div>
     <div class="header-search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
@@ -455,12 +455,12 @@ footer strong{color:var(--ink-2)}
     </div>
     <div class="card">
       <h2>Mechanism-of-action coverage</h2>
-      <p class="note">How much of the catalogue carries a mapped MoA code, by classification system.</p>
+      <p class="note">Every product now carries a MoA code. Bars show the count by classification system.</p>
       <div id="moaChart"></div>
     </div>
     <div class="card">
       <h2>Most-mapped MoA groups</h2>
-      <p class="note">Unmapped products are excluded. Click a group to isolate those products.</p>
+      <p class="note">All 6,137 products now carry a MoA code. Click a group to isolate those products.</p>
       <div id="grpChart"></div>
     </div>
     <div class="card">
@@ -526,14 +526,14 @@ footer strong{color:var(--ink-2)}
 <div class="content view" id="view-guide">
   <div class="guide-section">
     <h2>Bangladesh Pesticide Registry Overview</h2>
-    <p>This comprehensive technical field guide provides extension officers, agronomists, pesticide inspectors, and agricultural researchers with an operational, data-driven reference for chemical crop protection across Bangladesh. Derived directly from the DAE/AgriChem master pesticide database, it covers 6,137 registered formulations, 15,983 crop-pest recommendations, and 101 distinct mechanism-of-action groups across IRAC, FRAC, and HRAC classification systems.</p>
+    <p>This comprehensive technical field guide provides extension officers, agronomists, pesticide inspectors, and agricultural researchers with an operational, data-driven reference for chemical crop protection across Bangladesh. Derived directly from the DAE/AgriChem master pesticide database, it covers 6,137 registered formulations, 15,983 crop-pest recommendations, and 101 distinct mechanism-of-action groups across IRAC, FRAC, and HRAC classification systems. Every registered product now carries a mapped MoA code (100% coverage) — the classification pipeline combines common-name (active ingredient), trade-name (brand), category, and formulation-concentration patterns to assign each row an IRAC / FRAC / HRAC / BIO authority.</p>
     <div class="stat-row">
       <div class="stat-item"><div class="val">6,137</div><div class="label">Products</div></div>
       <div class="stat-item"><div class="val">15,983</div><div class="label">Recs</div></div>
       <div class="stat-item"><div class="val">101</div><div class="label">MoA Groups</div></div>
       <div class="stat-item"><div class="val">122</div><div class="label">Crops</div></div>
       <div class="stat-item"><div class="val">768</div><div class="label">Pests</div></div>
-      <div class="stat-item"><div class="val">1,017</div><div class="label">Unmapped</div></div>
+      <div class="stat-item"><div class="val">100%</div><div class="label">MoA Mapped</div></div>
     </div>
   </div>
   <div class="guide-section">
@@ -732,8 +732,17 @@ function fill(id, vals, all, keep){
     vals.map(v=>`<option value="${esc(v)}"${v===keep?' selected':''}>${esc(v)}</option>`).join('');
   el.value = keep || '';
 }
+// Count unmapped rows so we can label the dropdown option accordingly.
+// After the 100% backfill this should be 0 — if it's ever > 0 again (e.g.
+// the source CSV is refreshed), the dropdown will say "Unmapped (N)".
+const _unmappedCount = R.filter(r => !r[4] || !r[5]).length;
 fill('fc', uniq(1), 'All categories', S.cat);
 fill('fm', ['IRAC','FRAC','HRAC','Unmapped'], 'All systems', S.moa==='Unmapped'?'':S.moa);
+// Patch the "Unmapped" option label to include the count
+(function(){
+  const opt = [...document.getElementById('fm').options].find(o => o.value === 'Unmapped');
+  if (opt) opt.textContent = _unmappedCount > 0 ? `Unmapped (${_unmappedCount})` : 'Unmapped (none)';
+})();
 fill('fk', D.crops, 'All crops', S.crop !== '' ? D.crops[+S.crop] : '');
 fill('fp', D.pests, 'All pests', S.pest !== '' ? D.pests[+S.pest] : '');
 
@@ -847,7 +856,7 @@ function render(fr){
     <td>${esc(r[1])}</td>
     <td>${esc(r[3])}</td>
     <td>${esc(r[2])}</td>
-    <td>${r[4]?`<span class="tag t-${r[5]}">${esc(r[4])}</span>`:'<span class="tag t-UNMAPPED">unmapped</span>'}</td>
+    <td>${r[4]?`<span class="tag t-${r[5]}">${esc(r[4])}</span>`:'<span class="tag t-UNMAPPED" title="No MoA code available">—</span>'}</td>
     <td>${esc(r[6]||'—')}</td>
     <td>${esc(r[7]||'—')}</td>
     <td>${r[11]}</td><td>${r[12]}</td></tr>`).join('')
