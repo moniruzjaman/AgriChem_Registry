@@ -6,70 +6,52 @@
 <meta name="theme-color" content="#0f3d2e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>AgriChem · Pesticide Field Guide</title>
-
-<!-- Social Media Preview Meta Tags -->
 <meta property="og:title" content="AgriChem Pesticide Field Guide">
 <meta property="og:description" content="DAE Bangladesh Pesticide Registry: 6,138 products, 101 MoA groups, resistance management & regulatory compliance.">
 <meta property="og:image" content="og-image.svg">
 <meta property="og:url" content="https://moniruzjaman.github.io/AgriChem_Registry/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AgriChem Pesticide Field Guide">
-<meta name="twitter:description" content="DAE Bangladesh Pesticide Registry: 6,138 products, 101 MoA groups, resistance management.">
 <meta name="twitter:image" content="og-image.svg">
-
 <link rel="manifest" href='data:application/manifest+json,{"name":"AgriChem Field Guide","short_name":"AgriChem","display":"standalone","background_color":"#0f3d2e","theme_color":"#0f3d2e","start_url":"./","icons":[{"src":"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%230f3d2e%22/><path d=%22M256 96 C 360 96 416 168 416 264 C 416 376 336 432 256 432 C 200 432 160 392 160 344 C 160 296 200 264 256 264 C 296 264 320 288 320 320%22 fill=%22none%22 stroke=%22%237dd3a0%22 stroke-width=%2228%22/><path d=%22M256 152 V 372%22 stroke=%22%23e8f5ec%22 stroke-width=%2222%22/></svg>","sizes":"any","type":"image/svg+xml"}]}' />
-
 <style>
 :root{--bg:#f8fafc;--panel:#fff;--bg2:#f1f5f9;--ink:#0f172a;--ink-dim:#64748b;--line:#e2e8f0;--accent:#0f3d2e;--accent-light:#dcfce7;--accent2:#15803d;--red:#dc2626;--red-light:#fee2e2;--amber:#d97706;--amber-light:#fef3c7;--blue:#2563eb;--blue-light:#dbeafe;--purple:#9333ea;--purple-light:#f3e8ff;--radius:16px;--shadow:0 4px 6px -1px rgba(0,0,0,.05);--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
-
-/* Fluid Typography */
-h1{font-size:clamp(1.2rem, 3vw, 1.8rem)}
-h2{font-size:clamp(1.1rem, 2.5vw, 1.6rem)}
-
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px 16px;border-bottom:1px solid var(--line);padding-top:max(12px,env(safe-area-inset-top));box-shadow:var(--shadow)}
 .header-container{max-width:1400px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .brand svg{width:36px;height:36px;border-radius:8px;flex-shrink:0}
-.brand h1{font:700 var(--header-size, 1.2rem) var(--serif);margin:0;color:var(--accent);letter-spacing:-.3px}
+.brand h1{font:700 clamp(1.2rem, 3vw, 1.8rem) var(--serif);margin:0;color:var(--accent)}
 .brand .sub{font:600 11px var(--sans);color:var(--ink-dim)}
-
 .search{position:relative;margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto}
-.search input{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:14px 14px 14px 44px;border-radius:12px;font:500 15px var(--sans);transition:all .2s}
+.search input{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:14px 14px 14px 44px;border-radius:12px;font:500 15px var(--sans)}
 .search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-light)}
 .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4}
-
 .content{padding:16px 16px 80px;max-width:1400px;margin:0 auto;width:100%}
 .view{display:none}.view.active{display:block}
-
-/* Responsive Grids */
 .guide-section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
-.guide-section h2{font:700 var(--h2-size, 1.4rem) var(--serif);color:var(--accent);margin:0 0 8px;border-bottom:2px solid var(--accent-light);padding-bottom:8px}
+.guide-section h2{font:700 clamp(1.1rem, 2.5vw, 1.6rem) var(--serif);color:var(--accent);margin:0 0 8px;border-bottom:2px solid var(--accent-light);padding-bottom:8px}
 .guide-section h3{font:700 16px var(--serif);color:var(--ink);margin:20px 0 8px}
 .guide-section p{font:400 14px/1.7 var(--sans);color:var(--ink-dim);margin:0 0 12px}
-
 .stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:16px 0}
 .stat-item{background:var(--bg2);padding:12px;border-radius:8px;text-align:center}
 .stat-item .val{font:800 20px var(--sans);color:var(--accent2)}
 .stat-item .label{font:600 11px var(--sans);color:var(--ink-dim)}
-
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0}
 .cat-card{background:var(--bg2);padding:16px;border-radius:12px;text-align:center;cursor:pointer;transition:all .15s;border:2px solid transparent}
 .cat-card:active{transform:scale(.97);border-color:var(--accent)}
-
 .guide-table{width:100%;border-collapse:collapse;margin:12px 0;font:400 12px var(--sans);display:block;overflow-x:auto;white-space:nowrap}
 @media(min-width:768px){.guide-table{display:table;white-space:normal}}
 .guide-table th{background:var(--accent);color:#fff;padding:8px;text-align:left;font-weight:700}
 .guide-table td{border:1px solid var(--line);padding:8px;color:var(--ink)}
 .guide-table tr:nth-child(even){background:var(--bg2)}
-
+.warn-box{background:#fffbeb;border-left:4px solid #f59e0b;color:#92400e;padding:12px;margin:12px 0;border-radius:4px;font:500 13px var(--sans)}
+.danger-box{background:var(--red-light);border-left:4px solid var(--red);color:#991b1b;padding:12px;margin:12px 0;border-radius:4px;font:500 13px var(--sans)}
 .filter-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none;margin-bottom:12px}
 .filter-bar::-webkit-scrollbar{display:none}
-.filter-select{background:var(--panel);border:1px solid var(--line);padding:8px 12px;border-radius:10px;font:600 12px var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap;-webkit-appearance:none}
+.filter-select{background:var(--panel);border:1px solid var(--line);padding:8px 12px;border-radius:10px;font:600 12px var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap}
 .filter-select.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:transform .1s;box-shadow:var(--shadow)}
 .card:active{transform:scale(.98)}
@@ -77,21 +59,16 @@ header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px
 .card .trade{font:700 15px var(--serif);color:var(--ink);line-height:1.2}
 .card .common{font:400 12px var(--sans);color:var(--ink-dim);font-style:italic;margin-top:2px}
 .card .tier-badge{font:700 9px var(--sans);padding:4px 8px;border-radius:4px;text-transform:uppercase;white-space:nowrap}
-.tier-red{background:var(--red-light);color:var(--red)}
-.tier-amber{background:var(--amber-light);color:var(--amber)}
-.tier-green{background:var(--accent-light);color:var(--accent2)}
-.tier-slate{background:var(--bg2);color:var(--ink-dim)}
+.tier-red{background:var(--red-light);color:var(--red)}.tier-amber{background:var(--amber-light);color:var(--amber)}.tier-green{background:var(--accent-light);color:var(--accent2)}.tier-slate{background:var(--bg2);color:var(--ink-dim)}
 .card .meta{font:400 11px var(--sans);color:var(--ink-dim);margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
 .badge{padding:3px 6px;border-radius:4px;font-weight:600;border:1px solid var(--line);cursor:pointer}
-.badge.moa{background:var(--blue-light);color:var(--blue)}
-.badge.common{background:var(--purple-light);color:var(--purple)}
-
-.modal{position:fixed;inset:0;background:rgba(15,61,46,0.6);backdrop-filter:blur(4px);z-index:40;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.badge.moa{background:var(--blue-light);color:var(--blue)}.badge.common{background:var(--purple-light);color:var(--purple)}
+.modal{position:fixed;inset:0;background:rgba(15,61,46,0.6);backdrop-filter:blur(4px);z-index:40;display:none;align-items:center;justify-content:center;opacity:0}
 .modal.show{display:flex;opacity:1}
 .sheet{background:#fff;border-radius:20px;max-width:600px;width:92%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.2)}
 .sheet-head{padding:24px 24px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:1}
 .sheet-head h2{font:700 22px var(--serif);color:var(--accent);margin:0 0 4px}
-.sheet-head .sub{font:400 14px var(--sans);color:var(--ink-dim)}
+.sheet-head .sub{font:400 14px var(--sans);color:var(--ink-dim);font-style:italic}
 .sheet-close{position:absolute;top:16px;right:16px;background:var(--bg2);border:none;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--ink-dim)}
 .sheet-body{padding:20px 24px 32px}
 .detail-section{margin-bottom:24px}
@@ -105,7 +82,6 @@ header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px
 .alt-box{background:var(--accent-light);border:1px solid var(--accent);padding:16px;border-radius:12px;margin-top:8px}
 .alt-btn{display:inline-block;background:#fff;color:var(--accent2);border:1px solid var(--accent2);padding:8px 14px;border-radius:20px;font:700 12px var(--sans);cursor:pointer;margin:4px}
 .share-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:10px;font:700 14px var(--sans);cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px}
-
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:30}
 .nav-container{display:flex;justify-content:space-around;width:100%;max-width:600px}
 .nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;font:700 10px var(--sans);color:var(--ink-dim);cursor:pointer;padding:4px 32px}
@@ -128,38 +104,136 @@ header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px
     </div>
   </div>
 </header>
-
-<nav class="desktop-nav">
-  <button class="nav-btn on" onclick="switchView('guide')">Guide</button>
-  <button class="nav-btn" onclick="switchView('database')">Database</button>
-</nav>
+<nav class="desktop-nav"><button class="nav-btn on" onclick="switchView('guide')">Guide</button><button class="nav-btn" onclick="switchView('database')">Database</button></nav>
 
 <div class="content view active" id="view-guide">
   <div class="guide-section">
     <h2>Bangladesh Pesticide Registry Overview</h2>
     <p>This comprehensive technical field guide provides extension officers, agronomists, pesticide inspectors, and agricultural researchers with an operational, data-driven reference for chemical crop protection across Bangladesh. Derived directly from the DAE/AgriChem master pesticide database.</p>
     <div class="stat-row">
-      <div class="stat-item"><div class="val">6,138</div><div class="label">Products</div></div>
-      <div class="stat-item"><div class="val">15,983</div><div class="label">Recs</div></div>
-      <div class="stat-item"><div class="val">101</div><div class="label">MoA Groups</div></div>
-      <div class="stat-item"><div class="val">122</div><div class="label">Crops</div></div>
-      <div class="stat-item"><div class="val">768</div><div class="label">Pests</div></div>
-      <div class="stat-item"><div class="val">1,292</div><div class="label">HHPs</div></div>
+      <div class="stat-item"><div class="val">6,138</div><div class="label">Products</div></div><div class="stat-item"><div class="val">15,983</div><div class="label">Recs</div></div><div class="stat-item"><div class="val">101</div><div class="label">MoA Groups</div></div><div class="stat-item"><div class="val">122</div><div class="label">Crops</div></div><div class="stat-item"><div class="val">768</div><div class="label">Pests</div></div><div class="stat-item"><div class="val">1,292</div><div class="label">HHPs</div></div>
     </div>
   </div>
   <div class="guide-section">
     <h2>Product Categories</h2>
     <div class="cat-grid">
-      <div class="cat-card" onclick="filterByCat('Insecticide')">🦟 <div><b>2,931</b><br>Insecticide</div></div>
-      <div class="cat-card" onclick="filterByCat('Fungicide')">🍄 <div><b>1,186</b><br>Fungicide</div></div>
-      <div class="cat-card" onclick="filterByCat('Herbicide')">🌾 <div><b>955</b><br>Herbicide</div></div>
-      <div class="cat-card" onclick="filterByCat('Bio Pesticide')">🌱 <div><b>43</b><br>Bio Pesticide</div></div>
+      <div class="cat-card" onclick="filterByCat('Insecticide')">🦟 <div><b>2,931</b><br>Insecticide</div></div><div class="cat-card" onclick="filterByCat('Fungicide')">🍄 <div><b>1,186</b><br>Fungicide</div></div><div class="cat-card" onclick="filterByCat('Herbicide')">🌾 <div><b>955</b><br>Herbicide</div></div><div class="cat-card" onclick="filterByCat('Bio Pesticide')">🌱 <div><b>43</b><br>Bio Pesticide</div></div>
     </div>
   </div>
   <div class="guide-section">
-    <h2>Resistance Management</h2>
-    <p>Over 75% of insecticide pressure is concentrated in four groups. Repeated application without rotation has produced documented field resistance.</p>
-    <div class="guide-table"><table><tr><th>Group</th><th>Mechanism</th><th>Risk</th><th>Rotation</th></tr><tr><td>IRAC 1B</td><td>AChE inhibitors</td><td>HIGH</td><td>IRAC 4A, 28, 6</td></tr><tr><td>IRAC 3A</td><td>Sodium channel</td><td>HIGH</td><td>IRAC 6, 28, 5</td></tr><tr><td>IRAC 4A</td><td>nAChR modulators</td><td>HIGH</td><td>IRAC 9B, 29, 16</td></tr></table></div>
+    <h2>Regulatory Policy & HHP Risk Matrix</h2>
+    <p>Under PTAC 2026, 1,292 registered formulations (21.05%) meet the criteria for Highly Hazardous Pesticides (HHPs).</p>
+    <div class="guide-table"><table>
+      <thead><tr><th>Tier</th><th>Count</th><th>WHO Class</th><th>Representative Actives</th><th>Regulatory Action</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--red);font-weight:700">RED</td><td>607</td><td>Ia, Ib, II</td><td>Carbofuran, Monocrotophos, Paraquat</td><td>Phase-out / Ban in progress</td></tr>
+        <tr><td style="color:var(--amber);font-weight:700">AMBER</td><td>685</td><td>II (Moderate)</td><td>Chlorpyrifos, Cypermethrin, Dimethoate</td><td>Restricted Field Use. Enhanced PPE, MRL surveillance</td></tr>
+        <tr><td>STANDARD</td><td>4,123</td><td>III / U</td><td>Mancozeb, Imidacloprid, Cartap, Sulphur</td><td>Standard GAP. Routine compliance auditing</td></tr>
+        <tr><td style="color:var(--accent2);font-weight:700">GREEN</td><td>23</td><td>Bio / Exempt</td><td>Bacillus thuringiensis, Trichoderma, Azadirachtin</td><td>Whitelisted & Subsidized. Expedited registration</td></tr>
+      </tbody>
+    </table></div>
+    <div class="danger-box">⚠ Mandatory Extension Notice: All RED Tier products (607 formulations) are subject to active regulatory review. Extension workers are strictly prohibited from recommending RED Tier active ingredients where viable Standard or Green Tier alternatives exist.</div>
+  </div>
+  <div class="guide-section">
+    <h2>Global Regulatory Discrepancies & Export Compliance</h2>
+    <div class="guide-table"><table>
+      <thead><tr><th>Active Molecule</th><th>DAE Status</th><th>EU/Global Status</th><th>Export Impact</th><th>Recommended Replacement</th></tr></thead>
+      <tbody>
+        <tr><td>Carbofuran</td><td>RED</td><td>BANNED (EU)</td><td>Severe neurotoxicity; instant rejection</td><td>Chlorantraniliprole (IRAC 28) or Cartap (IRAC 14)</td></tr>
+        <tr><td>Chlorpyrifos</td><td>AMBER</td><td>BANNED (EU/USA)</td><td>Developmental neurotoxicity; border recall</td><td>Emamectin benzoate (IRAC 6), Spinetoram (IRAC 5)</td></tr>
+        <tr><td>Carbendazim</td><td>AMBER</td><td>BANNED (EU)</td><td>Mutagenic; zero tolerance for Mango/Vegetables</td><td>Azoxystrobin + Difenoconazole (FRAC 11+3)</td></tr>
+        <tr><td>Paraquat</td><td>RED</td><td>BANNED (>50 countries)</td><td>Extreme acute toxicity without antidote</td><td>Glufosinate ammonium or mechanical tillage</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="guide-section">
+    <h2>Resistance Management Matrix</h2>
+    <h3>IRAC Core Matrix (Insecticides)</h3>
+    <p>Over 75% of insecticide pressure is concentrated in four groups. Repeated application without rotation has produced documented field resistance in BPH, Diamondback Moth, and Brinjal Shoot & Fruit Borer.</p>
+    <div class="guide-table"><table>
+      <thead><tr><th>IRAC Group</th><th>Mechanism</th><th>Products</th><th>Risk</th><th>Common Actives</th><th>Rotation Partners</th></tr></thead>
+      <tbody>
+        <tr><td>IRAC 1B</td><td>AChE inhibitors (OPs)</td><td>710</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Chlorpyrifos, Malathion, Dimethoate</td><td>IRAC 4A, IRAC 28, IRAC 6</td></tr>
+        <tr><td>IRAC 3A</td><td>Sodium channel modulators</td><td>641</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Cypermethrin, Lambda-Cyhalothrin</td><td>IRAC 6, IRAC 22A, IRAC 28, IRAC 5</td></tr>
+        <tr><td>IRAC 4A</td><td>nAChR modulators (Neonics)</td><td>505</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Imidacloprid, Thiamethoxam, Acetamiprid</td><td>IRAC 9B (Pymetrozine), IRAC 29, IRAC 16</td></tr>
+        <tr><td>IRAC 6</td><td>GluCl modulators</td><td>402</td><td style="color:var(--amber);font-weight:700">MED</td><td>Emamectin Benzoate, Abamectin</td><td>IRAC 28 (Diamides), IRAC 3A, IRAC 15</td></tr>
+        <tr><td>IRAC 1A</td><td>AChE inhibitors (Carbamates)</td><td>332</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Carbofuran, Carbosulfan, Methomyl</td><td>IRAC 28, IRAC 4A (Cross-resistance with 1B)</td></tr>
+        <tr><td>IRAC 14</td><td>nAChR channel blockers</td><td>148</td><td style="color:var(--accent2);font-weight:700">LOW-MED</td><td>Cartap Hydrochloride</td><td>IRAC 28, IRAC 4A, IRAC 1B</td></tr>
+        <tr><td>IRAC 28</td><td>Ryanodine receptor modulators</td><td>84</td><td style="color:var(--accent2);font-weight:700">LOW-MED</td><td>Chlorantraniliprole, Flubendiamide</td><td>IRAC 6, IRAC 15, IRAC 5 (Max 2 sprays)</td></tr>
+        <tr><td>IRAC 9B/29</td><td>Chordotonal organ modulators</td><td>42</td><td style="color:var(--accent2);font-weight:700">LOW</td><td>Pymetrozine (9B), Flonicamid (29)</td><td>IRAC 4A, IRAC 1B, IRAC 16 (Ideal for BPH)</td></tr>
+      </tbody>
+    </table></div>
+    <h3>FRAC & HRAC Matrix (Fungicides & Herbicides)</h3>
+    <div class="guide-table"><table>
+      <thead><tr><th>MoA Code</th><th>Authority & Site</th><th>Count</th><th>Risk</th><th>Key Actives</th><th>Anti-Resistance Strategy</th></tr></thead>
+      <tbody>
+        <tr><td>FRAC 3</td><td>DMI-Fungicides (Sterol biosynthesis)</td><td>309</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Hexaconazole, Difenoconazole, Propiconazole</td><td>Tank-mix or alternate with FRAC M03/M01. Max 2 applications/season</td></tr>
+        <tr><td>FRAC M3</td><td>Multi-site contact (Dithiocarbamates)</td><td>305</td><td style="color:var(--accent2);font-weight:700">VERY LOW</td><td>Mancozeb, Propineb, Zineb</td><td>Universal mixing partner. Low resistance risk</td></tr>
+        <tr><td>FRAC 1</td><td>MBC-Fungicides (Beta-tubulin)</td><td>189</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Carbendazim, Thiophanate-methyl</td><td>Limit to seed treatment; rotate with FRAC 3/M03</td></tr>
+        <tr><td>FRAC 11</td><td>QoI-Fungicides (Strobilurins)</td><td>112</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Azoxystrobin, Pyraclostrobin, Trifloxystrobin</td><td>Mandatory co-formulation with FRAC 3. Max 33% of program</td></tr>
+        <tr><td>HRAC B (2)</td><td>ALS Inhibitors</td><td>267</td><td style="color:var(--red);font-weight:700">HIGH</td><td>Pyrazosulfuron-ethyl, Bensulfuron, Bispyribac</td><td>Rotate with HRAC 15 (Pretilachlor) or HRAC 4 (2,4-D)</td></tr>
+        <tr><td>HRAC K3 (15)</td><td>VLCFA Inhibitors (Cell division)</td><td>178</td><td style="color:var(--accent2);font-weight:700">LOW</td><td>Pretilachlor, Butachlor, Acetochlor</td><td>Baseline pre-emergence treatment; alternate with mechanical weeding</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="guide-section">
+    <h2>Major Crop Protection & Field Rotation</h2>
+    <h3>Rice (Boro, Aman & Aus) — 3,884 Recommendations</h3>
+    <div class="guide-table"><table>
+      <thead><tr><th>Target Pest/Disease</th><th>First Line (MoA)</th><th>Rotation Partner (MoA)</th><th>Dosage</th><th>PHI</th></tr></thead>
+      <tbody>
+        <tr><td>Brown Planthopper (BPH)</td><td>Pymetrozine 50% WDG (IRAC 9B)</td><td>Flonicamid 50% WG (IRAC 29) or Dinotefuran 20% SG (IRAC 4A)</td><td>300 g/ha</td><td>14 days</td></tr>
+        <tr><td>Yellow Stem Borer</td><td>Chlorantraniliprole 0.4% GR (IRAC 28)</td><td>Cartap 50% SP (IRAC 14) or Fipronil 5% SC</td><td>10 kg/ha</td><td>21 days</td></tr>
+        <tr><td>Sheath Blight</td><td>Hexaconazole 5% EC (FRAC 3)</td><td>Azoxystrobin + Difenoconazole (FRAC 11+3)</td><td>1.0 L/ha</td><td>15 days</td></tr>
+        <tr><td>Rice Blast (Leaf/Neck)</td><td>Tricyclazole 75% WP (FRAC 16.1)</td><td>Isoprothiolane 40% EC (FRAC 6) or Kasugamycin 3% SL</td><td>400 g/ha</td><td>21 days</td></tr>
+      </tbody>
+    </table></div>
+    <div class="warn-box">💡 Avoid Cypermethrin for BPH control — it causes pest resurgence. Spray at plant base.</div>
+    <h3>Tea — 3,338 Recommendations</h3>
+    <div class="guide-table"><table>
+      <thead><tr><th>Target Pest/Disease</th><th>Primary Treatment</th><th>Rotation Partner</th><th>Dosage</th><th>PHI</th></tr></thead>
+      <tbody>
+        <tr><td>Tea Mosquito Bug (Helopeltis)</td><td>Clothianidin 50% WDG (IRAC 4A)</td><td>Thiamethoxam 25% WG (IRAC 4A) or Bifenthrin 10% EC</td><td>60 g/ha</td><td>7–10 days</td></tr>
+        <tr><td>Red Spider Mite</td><td>Sulphur 80% WDG (FRAC M02)</td><td>Propargite 57% EC (IRAC 12C) or Fenazaquin 10% EC</td><td>2.0 kg/ha</td><td>14 days</td></tr>
+        <tr><td>Black Rot / Die Back</td><td>Copper Oxychloride 50% WP (FRAC M01)</td><td>Hexaconazole 5% SC (FRAC 3)</td><td>2.5 kg/ha</td><td>14 days</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Potato, Vegetables & Fruit</h3>
+    <div class="guide-table"><table>
+      <thead><tr><th>Crop</th><th>Major Pest</th><th>Primary MoA</th><th>Rotation Partner</th><th>Dosage</th></tr></thead>
+      <tbody>
+        <tr><td>Potato</td><td>Late Blight (P. infestans)</td><td>Mancozeb 75% WP (FRAC M03)</td><td>Dimethomorph + Mancozeb (FRAC 40+M03)</td><td>2.0 kg/ha, PHI: 10 days</td></tr>
+        <tr><td>Brinjal</td><td>Shoot & Fruit Borer</td><td>Emamectin Benzoate 5% SG (IRAC 6)</td><td>Chlorantraniliprole 18.5% SC (IRAC 28) / Spinosad 45% SC</td><td>250 g/ha, PHI: 3 days</td></tr>
+        <tr><td>Mango</td><td>Mango Hopper</td><td>Imidacloprid 17.8% SL (IRAC 4A)</td><td>Lambda-Cyhalothrin 5% EC (IRAC 3A)</td><td>0.5 ml/L, 2 sprays</td></tr>
+        <tr><td>Tomato</td><td>Early/Late Blight & Fruit Borer</td><td>Azoxystrobin + Difenoconazole (FRAC 11+3)</td><td>Mancozeb 80% WP (FRAC M03) + Spinetoram (IRAC 5)</td><td>1 ml/L, PHI: 7 days</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="guide-section">
+    <h2>Field Safety, PHI & REI Protocols</h2>
+    <h3>Pre-Harvest Interval (PHI) & Re-Entry Interval (REI)</h3>
+    <div class="guide-table"><table>
+      <thead><tr><th>Chemical Class</th><th>WHO Class</th><th>Min PHI</th><th>Min REI</th><th>Stewardship Directive</th></tr></thead>
+      <tbody>
+        <tr><td>Organophosphates (Chlorpyrifos, Dimethoate)</td><td>Class II</td><td>15–21 Days</td><td>48 Hours</td><td>High dermal absorption. Mandatory chemical-resistant gloves, eye shield, vapor respirator</td></tr>
+        <tr><td>Carbamates (Carbofuran, Carbosulfan)</td><td>Class Ib/II</td><td>21–30 Days</td><td>48 Hours</td><td>Broadcast with calibrated applicator only. Never bare hands. Keep livestock off</td></tr>
+        <tr><td>Synthetic Pyrethroids (Cypermethrin, Lambda)</td><td>Class II/III</td><td>7–14 Days</td><td>24 Hours</td><td>Highly toxic to aquatic life and honeybees. No application near water bodies or peak flowering</td></tr>
+        <tr><td>Neonicotinoids (Imidacloprid, Thiamethoxam)</td><td>Class III</td><td>7–14 Days</td><td>12 Hours</td><td>Toxic to pollinators; avoid foliar spray when bees are foraging</td></tr>
+        <tr><td>Diamides & Avermectins (Chlorantraniliprole, Emamectin)</td><td>Class III/U</td><td>3–7 Days</td><td>12 Hours</td><td>Low mammalian toxicity. Excellent fit for IPM and short-cycle vegetables</td></tr>
+        <tr><td>Inorganic Fungicides (Sulphur, Copper Oxy)</td><td>Class U/III</td><td>3–5 Days</td><td>12 Hours</td><td>Eye and skin irritant. Wear goggles and dust mask during WP mixing</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Acute Field Poisoning Response</h3>
+    <div class="danger-box"><b>Golden Rule:</b> Immediately remove patient from contaminated zone, strip contaminated clothing, wash skin with clean water and soap. Never induce vomiting if swallowed pesticide contains hydrocarbon solvents (EC formulations) or if patient is unconscious.</div>
+    <div class="guide-table"><table>
+      <thead><tr><th>Pesticide Group</th><th>Symptoms</th><th>First Aid</th><th>Medical Antidote</th></tr></thead>
+      <tbody>
+        <tr><td>Organophosphates & Carbamates</td><td>Pinpoint pupils, salivation, sweating, muscle twitching, nausea, breathing difficulty</td><td>Maintain airway, recovery position, wash skin</td><td>Atropine Sulfate (1–2 mg IV/IM). PAM (Pralidoxime) for OPs only</td></tr>
+        <tr><td>Pyrethroids</td><td>Skin tingling/burning, dizziness, eye irritation, tremors</td><td>Wash face/eyes with water. Apply Vitamin E cream</td><td>Symptomatic; Antihistamines; Diazepam for tremors</td></tr>
+        <tr><td>Aluminium Phosphide (Gas)</td><td>Epigastric pain, vomiting, garlic breath, pulmonary edema, shock</td><td>Move to fresh air. Administer oxygen</td><td>No specific antidote. Gastric lavage with KMnO4 (1:10,000); intensive care</td></tr>
+        <tr><td>Zinc Phosphide</td><td>Nausea, vomiting, abdominal pain, intense thirst, liver/kidney dysfunction</td><td>Administer activated charcoal if conscious</td><td>Gastric lavage with 1% Sodium Bicarbonate; supportive therapy</td></tr>
+      </tbody>
+    </table></div>
   </div>
 </div>
 
@@ -174,19 +248,9 @@ header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px
   <div id="productList"></div>
 </div>
 
-<div class="modal" id="detailModal">
-  <div class="sheet">
-    <div class="sheet-head"><button class="sheet-close" onclick="closeModal()">×</button><h2 id="modalTitle"></h2><div class="sub" id="modalSub"></div></div>
-    <div class="sheet-body" id="modalBody"></div>
-  </div>
-</div>
+<div class="modal" id="detailModal"><div class="sheet"><div class="sheet-head"><button class="sheet-close" onclick="closeModal()">×</button><h2 id="modalTitle"></h2><div class="sub" id="modalSub"></div></div><div class="sheet-body" id="modalBody"></div></div></div>
 
-<nav class="bottom-nav">
-  <div class="nav-container">
-    <button class="nav-btn on" onclick="switchView('guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Guide</button>
-    <button class="nav-btn" onclick="switchView('database')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Database</button>
-  </div>
-</nav>
+<nav class="bottom-nav"><div class="nav-container"><button class="nav-btn on" onclick="switchView('guide')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>Guide</button><button class="nav-btn" onclick="switchView('database')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Database</button></div></nav>
 
 <script src="registry.js"></script>
 <script>
