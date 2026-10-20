@@ -81,13 +81,37 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;padding:7px 10px;
   border-radius:6px;font:500 12px/1.4 "Inter",sans-serif;opacity:0;transition:opacity .12s;z-index:99;
   max-width:280px;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px;padding-top:13px;border-top:1px dashed var(--line)}
+.btn{font:600 12px/1 "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;
+  padding:9px 14px;border-radius:7px;cursor:pointer;border:1px solid var(--line);
+  background:#fff;color:var(--ink);transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--paper-2);border-color:var(--terra);color:var(--terra)}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.primary:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+.btn svg{width:14px;height:14px}
+.kbd{font:600 10.5px "Inter",sans-serif;background:var(--paper-2);border:1px solid var(--line);
+  padding:2px 6px;border-radius:4px;color:var(--slate)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:#fff;padding:11px 18px;border-radius:8px;
+  font:600 13px/1 "Inter",sans-serif;opacity:0;transition:all .25s;z-index:100;
+  box-shadow:0 6px 18px rgba(0,0,0,.2);pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:940px){
+  header{position:sticky;top:0;background:var(--paper);
+    border-bottom:2px solid var(--ink);padding:14px 0 14px;margin-bottom:14px;z-index:20}
+  .wrap{padding:14px 14px 80px}
+  h1{font-size:24px}
+  .grid{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr 1fr}
+  .actions{justify-content:stretch}
+  .btn{flex:1;justify-content:center}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
   <div>
-    <p class="eyebrow">Canonical Extract · Manus Session</p>
     <h1>Bangladesh <em>DAE</em> Pesticide Registry</h1>
     <p class="sub">One de-duplicated catalogue of registered products keyed on registration number,
       with the crop–pest recommendations and IRAC / FRAC / HRAC mechanism links as queryable bridge tables.</p>
@@ -105,6 +129,24 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
     <div class="f"><label for="fm">MoA system</label><select id="fm"></select></div>
     <div class="f"><label for="fk">Crop</label><select id="fk"></select></div>
     <div class="f"><label for="fp">Pest</label><select id="fp"></select></div>
+  </div>
+  <div class="actions">
+    <button class="btn primary" id="btn-export" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+      Export filtered rows (CSV)
+    </button>
+    <button class="btn" id="btn-share" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 10.5l7-4M8.5 13.5l7 4"/></svg>
+      Copy share link
+    </button>
+    <button class="btn" id="btn-reset" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
+      Reset filters
+    </button>
+    <span style="flex:1"></span>
+    <span style="font:500 12px/1.6 'Inter',sans-serif;color:var(--slate);align-self:center">
+      Press <span class="kbd">/</span> to focus search · <span class="kbd">Esc</span> to clear
+    </span>
   </div>
   <div class="chips" id="chips"></div>
 </div>
@@ -155,9 +197,14 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
   active ingredient rather than trade name, and leaves ambiguous or unrecorded rows visibly unmapped instead of
   inventing a code. This is a field-reference extract, not a regulatory status check: confirm current approval,
   dose and pre-harvest interval against the official DAE register before agricultural use.
+  <div style="margin-top:10px;font:600 11px/1.5 'Inter',sans-serif;color:var(--slate);text-transform:uppercase;letter-spacing:.06em">
+    Dataset · <span id="ft-products">0</span> products · <span id="ft-moa">0</span> MoA groups ·
+    <span id="ft-coverage">0%</span> mapped · build <span id="ft-build">—</span>
+  </div>
 </footer>
 </div>
 <div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
 
 <script>
 const D = window.REGISTRY, C = D.cols, R = D.rows;
@@ -332,7 +379,150 @@ document.querySelectorAll('#tbl th').forEach(th => th.onclick = () => {
   render();
 });
 addEventListener('resize', () => render(R.filter(match)));
+
+// ---------------------------------------------------------------- toast
+const toastEl = document.getElementById('toast');
+let toastT;
+function toast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>toastEl.classList.remove('show'), 2200);
+}
+
+// ---------------------------------------------------------------- footer stats
+const ftProducts = document.getElementById('ft-products');
+const ftMoa     = document.getElementById('ft-moa');
+const ftCov     = document.getElementById('ft-coverage');
+const ftBuild   = document.getElementById('ft-build');
+if (ftProducts) ftProducts.textContent = M.products.toLocaleString();
+if (ftMoa)      ftMoa.textContent      = M.moaGroups.toLocaleString();
+if (ftCov)      ftCov.textContent      = ((M.mapped/M.products)*100).toFixed(1)+'%';
+if (ftBuild)    ftBuild.textContent    = new Date().toISOString().slice(0,10);
+
+// ---------------------------------------------------------------- CSV export
+function csvCell(v){
+  if (v == null) return '';
+  v = String(v);
+  if (/[",\n\r]/.test(v)) return '"' + v.replace(/"/g, '""') + '"';
+  return v;
+}
+function exportCSV(){
+  const fr = R.filter(match);
+  if (!fr.length){ toast('No rows to export'); return; }
+  // header row — pick human-readable column names
+  const headers = ['Registration No','Category','Common Name','Trade Name','MoA Code','Scheme',
+                   'Resistance Risk','Policy Tier','Crops','Pests'];
+  const lines = [headers.map(csvCell).join(',')];
+  for (const r of fr){
+    const crops = (r[9]||[]).map(i=>D.crops[i]||('#'+i)).join('; ');
+    const pests = (r[10]||[]).map(i=>D.pests[i]||('#'+i)).join('; ');
+    lines.push([r[0],r[1],r[2],r[3],r[4]||'',r[5]||'',r[6]||'',r[7]||'',crops,pests]
+      .map(csvCell).join(','));
+  }
+  // Prepend BOM so Excel opens UTF-8 correctly
+  const blob = new Blob(['\uFEFF'+lines.join('\r\n')], {type:'text/csv;charset=utf-8'});
+  const url  = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const ts = new Date().toISOString().slice(0,10);
+  const catPart = S.cat ? '-'+S.cat.replace(/[^a-z0-9]+/gi,'_') : '';
+  a.download = `agrichem_registry${catPart}-${ts}.csv`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url), 1500);
+  toast(`Exported ${fr.length.toLocaleString()} rows`);
+}
+
+// ---------------------------------------------------------------- share link
+function shareLink(){
+  const params = new URLSearchParams();
+  if (S.q)    params.set('q', S.q);
+  if (S.cat)  params.set('cat', S.cat);
+  if (S.moa)  params.set('moa', S.moa);
+  if (S.crop !== '') params.set('crop', D.crops[+S.crop] || '');
+  if (S.pest !== '') params.set('pest', D.pests[+S.pest] || '');
+  const base = location.origin + location.pathname;
+  const url = params.toString() ? `${base}?${params}` : base;
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(()=>toast('Share link copied to clipboard'),
+      ()=>{ prompt('Copy this link:', url); });
+  } else {
+    prompt('Copy this link:', url);
+  }
+}
+
+// ---------------------------------------------------------------- reset all
+function resetAll(){
+  S.q=''; S.cat=''; S.moa=''; S.crop=''; S.pest='';
+  document.getElementById('q').value='';
+  fill('fc',uniq(1),'All categories','');
+  fill('fm',['IRAC','FRAC','HRAC','Unmapped'],'All systems','');
+  fill('fk',D.crops,'All crops','');
+  fill('fp',D.pests,'All pests','');
+  render();
+  toast('Filters cleared');
+}
+
+// ---------------------------------------------------------------- wire buttons
+document.getElementById('btn-export').addEventListener('click', exportCSV);
+document.getElementById('btn-share').addEventListener('click', shareLink);
+document.getElementById('btn-reset').addEventListener('click', resetAll);
+
+// ---------------------------------------------------------------- keyboard
+addEventListener('keydown', e => {
+  // Ignore when typing in a form field except for Escape
+  const typing = ['INPUT','SELECT','TEXTAREA'].includes(document.activeElement.tagName);
+  if (e.key === 'Escape'){
+    if (typing && document.activeElement.id === 'q' && document.activeElement.value){
+      document.activeElement.value = ''; S.q=''; render(); return;
+    }
+    tipHide();
+    if (typing) document.activeElement.blur();
+    return;
+  }
+  if (typing) return;
+  if (e.key === '/' || (e.key.toLowerCase() === 'f' && (e.ctrlKey || e.metaKey))){
+    e.preventDefault();
+    document.getElementById('q').focus();
+    document.getElementById('q').select();
+  } else if (e.key.toLowerCase() === 'r' && (e.ctrlKey || e.metaKey)){
+    // do nothing — browser reload
+  } else if (e.key.toLowerCase() === 'e'){
+    exportCSV();
+  } else if (e.key.toLowerCase() === 's'){
+    shareLink();
+  }
+});
+
+// ---------------------------------------------------------------- URL state (read on load + update on render)
+function readURL(){
+  const p = new URLSearchParams(location.search);
+  if (p.get('q'))   { S.q = p.get('q'); document.getElementById('q').value = p.get('q'); }
+  if (p.get('cat')) { S.cat = p.get('cat'); fill('fc',uniq(1),'All categories',S.cat); }
+  if (p.get('moa')) { S.moa = p.get('moa'); fill('fm',['IRAC','FRAC','HRAC','Unmapped'],'All systems',S.moa); }
+  if (p.get('crop')){ const i = D.crops.indexOf(p.get('crop')); if (i>=0){ S.crop=String(i); fill('fk',D.crops,'All crops',D.crops[i]); } }
+  if (p.get('pest')){ const i = D.pests.indexOf(p.get('pest')); if (i>=0){ S.pest=String(i); fill('fp',D.pests,'All pests',D.pests[i]); } }
+}
+readURL();
 render(R.filter(match));
+
+// ---------------------------------------------------------------- localStorage persistence
+try {
+  const saved = JSON.parse(localStorage.getItem('agrichem-explorer-state') || '{}');
+  if (saved && !location.search){  // URL params take priority
+    if (saved.q)   { S.q = saved.q; document.getElementById('q').value = saved.q; }
+    if (saved.cat) { S.cat = saved.cat; fill('fc',uniq(1),'All categories',S.cat); }
+    if (saved.moa) { S.moa = saved.moa; fill('fm',['IRAC','FRAC','HRAC','Unmapped'],'All systems',S.moa); }
+    if (saved.crop !== undefined) { S.crop = saved.crop; fill('fk',D.crops,'All crops',D.crops[+saved.crop]||''); }
+    if (saved.pest !== undefined) { S.pest = saved.pest; fill('fp',D.pests,'All pests',D.pests[+saved.pest]||''); }
+    if (saved.sort) { S.sort = saved.sort; S.dir = saved.dir || 1; }
+    render();
+  }
+  // Persist state whenever the user changes a filter
+  addEventListener('change', () => {
+    try { localStorage.setItem('agrichem-explorer-state', JSON.stringify(S)); } catch(e){}
+  });
+} catch(e){ /* localStorage may be blocked in private mode */ }
 </script>
 </body>
 </html>
