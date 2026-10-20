@@ -1,96 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f3d2e">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AgriChem">
 <title>AgriChem · Pesticide Field Guide</title>
+
+<!-- Icons & Manifest -->
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="mask-icon" href="icon.svg" color="#0f3d2e">
+<link rel="manifest" href="manifest.webmanifest">
+
+<!-- Social Media Meta Tags (Open Graph & Twitter) -->
 <meta property="og:title" content="AgriChem Pesticide Field Guide">
 <meta property="og:description" content="DAE Bangladesh Pesticide Registry: 6,138 products, 101 MoA groups, resistance management & regulatory compliance.">
 <meta property="og:image" content="https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg">
+<meta property="og:image:type" content="image/svg+xml">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://moniruzjaman.github.io/AgriChem_Registry/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="AgriChem Registry">
+
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AgriChem Pesticide Field Guide">
+<meta name="twitter:description" content="DAE Bangladesh Pesticide Registry: 6,138 products, 101 MoA groups, resistance management.">
 <meta name="twitter:image" content="https://moniruzjaman.github.io/AgriChem_Registry/og-image.svg">
-<link rel="manifest" href='data:application/manifest+json,{"name":"AgriChem Field Guide","short_name":"AgriChem","display":"standalone","background_color":"#0f3d2e","theme_color":"#0f3d2e","start_url":"./","icons":[{"src":"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%230f3d2e%22/><path d=%22M256 96 C 360 96 416 168 416 264 C 416 376 336 432 256 432 C 200 432 160 392 160 344 C 160 296 200 264 256 264 C 296 264 320 288 320 320%22 fill=%22none%22 stroke=%22%237dd3a0%22 stroke-width=%2228%22/><path d=%22M256 152 V 372%22 stroke=%22%23e8f5ec%22 stroke-width=%2222%22/></svg>","sizes":"any","type":"image/svg+xml"}]}' />
-<style>
-:root{--bg:#f8fafc;--panel:#fff;--bg2:#f1f5f9;--ink:#0f172a;--ink-dim:#64748b;--line:#e2e8f0;--accent:#0f3d2e;--accent-light:#dcfce7;--accent2:#15803d;--red:#dc2626;--red-light:#fee2e2;--amber:#d97706;--amber-light:#fef3c7;--blue:#2563eb;--blue-light:#dbeafe;--purple:#9333ea;--purple-light:#f3e8ff;--radius:16px;--shadow:0 4px 6px -1px rgba(0,0,0,.05);--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
-header.top{position:sticky;top:0;z-index:20;background:var(--panel);padding:12px 16px;border-bottom:1px solid var(--line);padding-top:max(12px,env(safe-area-inset-top));box-shadow:var(--shadow)}
-.header-container{max-width:1400px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.brand svg{width:36px;height:36px;border-radius:8px;flex-shrink:0}
-.brand h1{font:700 clamp(1.2rem, 3vw, 1.8rem) var(--serif);margin:0;color:var(--accent)}
-.brand .sub{font:600 11px var(--sans);color:var(--ink-dim)}
-.search{position:relative;margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto}
-.search input{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);padding:14px 14px 14px 44px;border-radius:12px;font:500 15px var(--sans)}
-.search input:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px var(--accent-light)}
-.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.4}
-.content{padding:16px 16px 80px;max-width:1400px;margin:0 auto;width:100%}
-.view{display:none}.view.active{display:block}
-.guide-section{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:16px;box-shadow:var(--shadow)}
-.guide-section h2{font:700 clamp(1.1rem, 2.5vw, 1.6rem) var(--serif);color:var(--accent);margin:0 0 8px;border-bottom:2px solid var(--accent-light);padding-bottom:8px}
-.guide-section h3{font:700 16px var(--serif);color:var(--ink);margin:20px 0 8px}
-.guide-section p{font:400 14px/1.7 var(--sans);color:var(--ink-dim);margin:0 0 12px}
-.stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:16px 0}
-.stat-item{background:var(--bg2);padding:12px;border-radius:8px;text-align:center}
-.stat-item .val{font:800 20px var(--sans);color:var(--accent2)}
-.stat-item .label{font:600 11px var(--sans);color:var(--ink-dim)}
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:16px 0}
-.cat-card{background:var(--bg2);padding:16px;border-radius:12px;text-align:center;cursor:pointer;transition:all .15s;border:2px solid transparent}
-.cat-card:active{transform:scale(.97);border-color:var(--accent)}
-.guide-table{width:100%;border-collapse:collapse;margin:12px 0;font:400 12px var(--sans);display:block;overflow-x:auto;white-space:nowrap}
-@media(min-width:768px){.guide-table{display:table;white-space:normal}}
-.guide-table th{background:var(--accent);color:#fff;padding:8px;text-align:left;font-weight:700}
-.guide-table td{border:1px solid var(--line);padding:8px;color:var(--ink)}
-.guide-table tr:nth-child(even){background:var(--bg2)}
-.warn-box{background:#fffbeb;border-left:4px solid #f59e0b;color:#92400e;padding:12px;margin:12px 0;border-radius:4px;font:500 13px var(--sans)}
-.danger-box{background:var(--red-light);border-left:4px solid var(--red);color:#991b1b;padding:12px;margin:12px 0;border-radius:4px;font:500 13px var(--sans)}
-.filter-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none;margin-bottom:12px}
-.filter-bar::-webkit-scrollbar{display:none}
-.filter-select{background:var(--panel);border:1px solid var(--line);padding:8px 12px;border-radius:10px;font:600 12px var(--sans);color:var(--ink);cursor:pointer;white-space:nowrap}
-.filter-select.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;transition:transform .1s;box-shadow:var(--shadow)}
-.card:active{transform:scale(.98)}
-.card .head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px}
-.card .trade{font:700 15px var(--serif);color:var(--ink);line-height:1.2}
-.card .common{font:400 12px var(--sans);color:var(--ink-dim);font-style:italic;margin-top:2px}
-.card .tier-badge{font:700 9px var(--sans);padding:4px 8px;border-radius:4px;text-transform:uppercase;white-space:nowrap}
-.tier-red{background:var(--red-light);color:var(--red)}.tier-amber{background:var(--amber-light);color:var(--amber)}.tier-green{background:var(--accent-light);color:var(--accent2)}.tier-slate{background:var(--bg2);color:var(--ink-dim)}
-.card .meta{font:400 11px var(--sans);color:var(--ink-dim);margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
-.badge{padding:3px 6px;border-radius:4px;font-weight:600;border:1px solid var(--line);cursor:pointer}
-.badge.moa{background:var(--blue-light);color:var(--blue)}.badge.common{background:var(--purple-light);color:var(--purple)}
-.modal{position:fixed;inset:0;background:rgba(15,61,46,0.6);backdrop-filter:blur(4px);z-index:40;display:none;align-items:center;justify-content:center;opacity:0}
-.modal.show{display:flex;opacity:1}
-.sheet{background:#fff;border-radius:20px;max-width:600px;width:92%;max-height:88vh;overflow-y:auto;box-shadow:0 20px 25px -5px rgba(0,0,0,0.2)}
-.sheet-head{padding:24px 24px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:1}
-.sheet-head h2{font:700 22px var(--serif);color:var(--accent);margin:0 0 4px}
-.sheet-head .sub{font:400 14px var(--sans);color:var(--ink-dim);font-style:italic}
-.sheet-close{position:absolute;top:16px;right:16px;background:var(--bg2);border:none;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--ink-dim)}
-.sheet-body{padding:20px 24px 32px}
-.detail-section{margin-bottom:24px}
-.section-title{font:800 12px var(--sans);color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.detail-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bg2);font:400 14px var(--sans)}
-.detail-row:last-child{border-bottom:none}
-.detail-row .k{color:var(--ink-dim);font-weight:600;flex:0 0 40%}
-.detail-row .v{color:var(--ink);font-weight:500;text-align:right;flex:1}
-.tag{display:inline-block;background:var(--bg2);padding:4px 10px;border-radius:6px;font:600 12px var(--sans);color:var(--ink);cursor:pointer}
-.tag.link{background:var(--blue-light);color:var(--blue)}
-.alt-box{background:var(--accent-light);border:1px solid var(--accent);padding:16px;border-radius:12px;margin-top:8px}
-.alt-btn{display:inline-block;background:#fff;color:var(--accent2);border:1px solid var(--accent2);padding:8px 14px;border-radius:20px;font:700 12px var(--sans);cursor:pointer;margin:4px}
-.share-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:12px;border-radius:10px;font:700 14px var(--sans);cursor:pointer;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--panel);border-top:1px solid var(--line);display:flex;justify-content:center;padding:8px 0 max(8px,env(safe-area-inset-bottom));z-index:30}
-.nav-container{display:flex;justify-content:space-around;width:100%;max-width:600px}
-.nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;font:700 10px var(--sans);color:var(--ink-dim);cursor:pointer;padding:4px 32px}
-.nav-btn.on{color:var(--accent2)}
-.nav-btn svg{width:22px;height:22px}
-@media(min-width:1024px){.bottom-nav{display:none}.desktop-nav{display:flex;justify-content:center;gap:20px;padding:12px;background:var(--accent);margin-bottom:16px}.desktop-nav button{background:none;border:none;color:#a8d5ba;font:700 14px var(--sans);cursor:pointer;padding:8px 16px;border-radius:8px}.desktop-nav button.on{background:var(--accent2);color:#fff}}
-.desktop-nav{display:none}
-</style>
+
+<!-- Structured Data for Search Engines (Schema.org) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AgriChem Field Guide",
+  "url": "https://moniruzjaman.github.io/AgriChem_Registry/",
+  "description": "DAE Bangladesh Pesticide Registry: 6,138 products, 101 MoA groups, resistance management & regulatory compliance.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 </head>
+
 <body>
 <header class="top">
   <div class="header-container">
