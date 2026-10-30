@@ -10,7 +10,7 @@
    Bump CACHE_VERSION below whenever you ship a breaking change
    to force a clean cache flush on existing users.
    ============================================================ */
-const CACHE_VERSION = 'agrichem-registry-v3';
+const CACHE_VERSION = 'agrichem-registry-v4';
 const CACHE = CACHE_VERSION;
 const SHELL = [
   './',
